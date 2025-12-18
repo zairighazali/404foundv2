@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="404Found Studio - Creative web projects and more.">
+    <meta name="keywords" content="404Found, web development, React, Vite, studio">
+    <meta name="author" content="404Found Studio">
+    <meta property="og:title" content="404Found Studio">
+    <meta property="og:description" content="Creative web projects and more">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://404found.studio">
+    <meta property="og:image" content="https://404found.studio/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>404found Studio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx">
+       // Configure Tailwind
+                window.tailwind = window.tailwind || {};
+                tailwind.config = {
+                    corePlugins: { preflight: false },
+                };
+
+                // Load Tailwind CDN
+                var tailwindScript = document.createElement('script');
+                tailwindScript.src = 'https://cdn.tailwindcss.com';
+                document.head.appendChild(tailwindScript);
+            
+    </script>
+  </body>
+</html>
