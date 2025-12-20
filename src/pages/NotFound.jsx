@@ -1,21 +1,132 @@
+import { useEffect, useRef, useState } from "react";
+
 export default function NotFound() {
+  const [lines, setLines] = useState([]);
+  const [input, setInput] = useState("");
+  const [ready, setReady] = useState(false);
+  const inputRef = useRef(null);
+
+  const script = [
+    "$ locate page",
+    "> searching...",
+    "> page not found",
+    "> but you found us",
+    "",
+    "type 'home' and press ENTER to return",
+  ];
+
+  // typing effect
+  useEffect(() => {
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentLine = "";
+    const interval = setInterval(() => {
+      if (lineIndex >= script.length) {
+        clearInterval(interval);
+        setReady(true);
+        inputRef.current?.focus();
+        return;
+      }
+
+      if (charIndex < script[lineIndex].length) {
+        currentLine += script[lineIndex][charIndex];
+        charIndex++;
+        setLines(prev => {
+          const updated = [...prev];
+          updated[lineIndex] = currentLine;
+          return updated;
+        });
+      } else {
+        lineIndex++;
+        charIndex = 0;
+        currentLine = "";
+        setLines(prev => [...prev, ""]);
+      }
+    }, 40);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const cmd = input.trim().toLowerCase();
+
+    setLines(prev => [...prev, `$ ${input}`]);
+    setInput("");
+
+    if (["home", "cd /", "exit", "back"].includes(cmd)) {
+      setLines(prev => [...prev, "> redirecting..."]);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1200);
+    } else {
+      setLines(prev => [...prev, "> command not found"]);
+    }
+  };
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Main The Daily Spell!</h1>
+    <div style={styles.screen} onClick={() => inputRef.current?.focus()}>
+      <div style={styles.terminal}>
+        {lines.map((line, i) => (
+          <div key={i} style={styles.line}>
+            {line}
+          </div>
+        ))}
 
-      <div style={styles.gameContainer}>
-        <iframe
-          src="https://itch.io/embed/XXXXX?border_width=0"
-          width="640"
-          height="480"
-          style={styles.iframe}
-          title="The Daily Spell"
-        ></iframe>
+        {ready && (
+          <form onSubmit={handleSubmit}>
+            <span style={styles.prompt}>$ </span>
+            <input
+              ref={inputRef}
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              style={styles.input}
+              autoComplete="off"
+            />
+            <span style={styles.cursor}>█</span>
+          </form>
+        )}
       </div>
-
-      <p style={styles.footer}>
-        Kembali ke <a href="/" style={styles.link}>Homepage</a> bila siap main.
-      </p>
     </div>
   );
 }
+
+const styles = {
+  screen: {
+    background: "#0b0b0b",
+    color: "#00ff88",
+    width: "100vw",
+    height: "100vh",
+    fontFamily: "monospace",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "text",
+  },
+  terminal: {
+    width: "100%",
+    maxWidth: "900px",
+    padding: "40px",
+    boxSizing: "border-box",
+  },
+  line: {
+    whiteSpace: "pre-wrap",
+    lineHeight: "1.6",
+  },
+  prompt: {
+    color: "#00ff88",
+  },
+  input: {
+    background: "transparent",
+    border: "none",
+    outline: "none",
+    color: "#00ff88",
+    fontFamily: "monospace",
+    fontSize: "1rem",
+    width: "300px",
+  },
+  cursor: {
+    marginLeft: "2px",
+    animation: "blink 1s infinite",
+  },
+};
