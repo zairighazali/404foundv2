@@ -1,27 +1,30 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
-import Navbar from "./components/Navbar";
+
+import Layout from "./Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound"
-import { Toaster } from "./components/ui/sonner";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Routes>
+        <Routes>
+
+          {/* Route yang ADA navbar */}
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Toaster />
-        </div>
+          </Route>
+
+          {/* Route TANPA navbar */}
+          <Route path="*" element={<NotFound />} />
+
+        </Routes>
       </BrowserRouter>
     </LanguageProvider>
   );
