@@ -1,34 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="ms">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./public/icons/favicon.jpg">
+    <link rel="icon" type="image/png" href="/icons/favicon.jpg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="404Found Studio - Creative web projects and more.">
-    <meta name="keywords" content="404Found, web development, React, Vite, studio">
-    <meta name="author" content="404Found Studio">
-    <meta property="og:title" content="404Found Studio">
-    <meta property="og:description" content="Creative web projects and more">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://404found.studio">
-    <meta property="og:image" content="https://404found.studio/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>404found Studio</title>
+
+    
+    <title>Web Developer Malaysia | 404Found Studio – Website & Sistem Custom</title>
+    <meta
+      name="description"
+      content="404Found Studio ialah web developer Malaysia membina website, sistem custom, React app & API untuk bisnes dan startup."
+    />
+
+    
+    <meta name="geo.region" content="MY" />
+    <meta name="geo.placename" content="Malaysia" />
+    <meta name="language" content="MS-EN" />
+
+ 
+    <meta property="og:title" content="Web Developer Malaysia | 404Found Studio" />
+    <meta
+      property="og:description"
+      content="Web developer Malaysia bina website & sistem custom untuk bisnes dan startup."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://404found.studio" />
+    <meta property="og:image" content="https://404found.studio/og-image.png" />
+
+  
+    <meta name="twitter:card" content="summary_large_image" />
+
+   
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "404Found Studio",
+      "url": "https://404found.studio",
+      "areaServed": "MY",
+      "serviceType": "Web Development",
+      "sameAs": [
+        "https://www.linkedin.com/",
+        "https://github.com/"
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx">
-       // Configure Tailwind
-                window.tailwind = window.tailwind || {};
-                tailwind.config = {
-                    corePlugins: { preflight: false },
-                };
-
-                // Load Tailwind CDN
-                var tailwindScript = document.createElement('script');
-                tailwindScript.src = 'https://cdn.tailwindcss.com';
-                document.head.appendChild(tailwindScript);
-            
-    </script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
