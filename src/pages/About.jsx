@@ -75,7 +75,7 @@ const About = () => {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-40 h-40 rounded-full object-cover border-4 border-gray-800 group-hover:border-cyan-400 transition-all duration-300 relative z-10 mx-auto"
+                      className="w-40 h-40 rounded-full object-cover object-top border-4 border-gray-800 group-hover:border-cyan-400 transition-all duration-300 relative z-10 mx-auto"
                     />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors">
